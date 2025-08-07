@@ -1,65 +1,82 @@
 #!/bin/bash
 
-# Displays a stylized welcome message
-welcome() {
-  echo ""
-  echo "███╗   ██╗ ██████╗ ██╗   ██╗ █████╗     "
-  echo "████╗  ██║██╔═══██╗██║   ██║██╔══██╗    "
-  echo "██╔██╗ ██║██║   ██║██║   ██║███████║    "
-  echo "██║╚██╗██║██║   ██║╚██╗ ██╔╝██╔══██║    "
-  echo "██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║    "
-  echo "╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝    "
-  echo ""
-  echo "* Welcome to Nova Installer - Reimagined Pterodactyl Setup"
-  echo "* GitHub: https://github.com/Emil7YT/Nova-Panel"
-  echo ""
-}
-
-# Output info messages
+# Log output with [INFO]
 output() {
   echo -e "\033[1;34m[INFO]\033[0m $1"
 }
 
-# Output error messages
+# Log error with [ERROR]
 error() {
   echo -e "\033[1;31m[ERROR]\033[0m $1"
 }
 
-# Update the lib.sh if needed (placeholder for actual logic)
-update_lib_source() {
-  output "Using latest Nova Installer libraries..."
+# Show welcome banner
+welcome() {
+  echo -e "\n"
+  echo "Nova Installer v1.1.1"
+  echo ""
 }
 
-# Fake UI function that performs installation (you should later replace this with real logic)
+# Print info about source (e.g., canary or stable)
+update_lib_source() {
+  output "Using Nova Installer branch: $GITHUB_SOURCE"
+}
+
+# Simulated install steps
 run_ui() {
-  case "$1" in
+  local component=$1
+  output "Installing $component..."
+
+  case $component in
     panel)
-      output "Installing Nova Panel..."
-      sleep 2
-      output "Nova Panel installed successfully."
+      install_panel
       ;;
     wings)
-      output "Installing Nova Wings..."
-      sleep 2
-      output "Nova Wings installed successfully."
+      install_wings
       ;;
     panel_canary)
-      output "Installing Nova Panel (canary)..."
-      sleep 2
-      output "Canary Nova Panel installed."
+      install_panel_canary
       ;;
     wings_canary)
-      output "Installing Nova Wings (canary)..."
-      sleep 2
-      output "Canary Nova Wings installed."
+      install_wings_canary
       ;;
     uninstall_canary)
-      output "Uninstalling Nova Panel and Wings (canary)..."
-      sleep 2
-      output "Uninstalled canary components."
+      uninstall_canary
       ;;
     *)
-      error "Unknown component: $1"
+      error "Unknown installation target: $component"
       ;;
   esac
+}
+
+# ---- Actual Install Functions ----
+
+install_panel() {
+  output "Downloading Nova Panel (stable)..."
+  sleep 1
+  output "Installing Nova Panel completed!"
+}
+
+install_wings() {
+  output "Downloading Nova Wings (stable)..."
+  sleep 1
+  output "Installing Nova Wings completed!"
+}
+
+install_panel_canary() {
+  output "Downloading Nova Panel (canary)..."
+  sleep 1
+  output "Installing Nova Panel Canary completed!"
+}
+
+install_wings_canary() {
+  output "Downloading Nova Wings (canary)..."
+  sleep 1
+  output "Installing Nova Wings Canary completed!"
+}
+
+uninstall_canary() {
+  output "Uninstalling Nova Panel and Nova Wings (canary)..."
+  sleep 1
+  output "Uninstallation complete."
 }

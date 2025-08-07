@@ -38,7 +38,7 @@ fi
 
 # Always remove lib.sh, before downloading it
 [ -f /tmp/lib.sh ] && rm -rf /tmp/lib.sh
-curl -sSL -o /tmp/lib.sh "$GITHUB_BASE_URL"/master/lib/lib.sh
+curl -sSL -o /tmp/lib.sh "$GITHUB_BASE_URL"/main/lib/lib.sh
 # shellcheck source=lib/lib.sh
 source /tmp/lib.sh
 
